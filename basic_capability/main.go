@@ -19,11 +19,11 @@ func main() {
 	}
 
 	apiGroup := capdiscovery.
-		Group("resource-doesn't-exist-empty-version-string", "autoscaling").
-		WithVersions("").
-		WithResource("resourcedoesntexist")
-
+		Group("resource-empty-string", "autoscaling").
+		WithVersions("v1").
+		WithResource("")
 	fmt.Printf("Query API Group:\n %#v\n", apiGroup)
+
 	query := clusterQueryClient.Query(apiGroup)
 	_, err = query.Execute()
 	if err != nil {
@@ -31,12 +31,12 @@ func main() {
 	}
 
 	results := query.Results()
-	for k, v := range results {
-		fmt.Printf("group name: %s, result: %#v\n", k, v)
+	for _, v := range results {
+		fmt.Printf("Result: %#v\n", v)
 	}
 
 	// Output:
-	// 	Query API Group:
-	//  &discovery.QueryGVR{name:"resource-doesn't-exist-empty-version-string", group:"autoscaling", resource:"resourcedoesntexist", versions:[]string{""}, unmatchedGVRs:[]string(nil)}
-	// group name: resource-doesn't-exist-empty-version-string, result: &discovery.QueryResult{Found:true, NotFoundReason:""}
+	// Query API Group:
+	//  &discovery.QueryGVR{name:"resource-empty-string", group:"autoscaling", resource:"", versions:[]string{"v1"}, unmatchedGVRs:[]string(nil)}
+	//  Result: &discovery.QueryResult{Found:true, NotFoundReason:""}
 }
