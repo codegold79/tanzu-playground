@@ -20,8 +20,7 @@ func main() {
 
 	apiGroup := capdiscovery.
 		Group("resource-empty-string-non-existing-version", "autoscaling").
-		WithVersions("version-non-existing").
-		WithResource("")
+		WithResource("horizontalpodautoscalers")
 	fmt.Printf("Query API Group:\n %#v\n", apiGroup)
 
 	query := clusterQueryClient.Query(apiGroup)
@@ -37,6 +36,6 @@ func main() {
 
 	// Output:
 	// 	Query API Group:
-	// 	&discovery.QueryGVR{name:"resource-empty-string-non-existing-version", group:"autoscaling", resource:"", versions:[]string{"version-non-existing"}, unmatchedGVRs:[]string(nil)}
-	//    Result: &discovery.QueryResult{Found:false, NotFoundReason:"GVRs=[autoscaling/version-non-existing, Resource=] status=unmatched presence=true"}
+	//  &discovery.QueryGVR{name:"resource-empty-string-non-existing-version", group:"autoscaling", resource:"horizontalpodautoscalers", versions:[]string(nil), unmatchedGVRs:[]string(nil)}
+	// execute query: cannot check for group and resource existence without version info; use WithVersion method
 }
