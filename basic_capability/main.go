@@ -19,8 +19,8 @@ func main() {
 	}
 
 	apiGroup := capdiscovery.
-		Group("resource-empty-string", "autoscaling").
-		WithVersions("v1").
+		Group("resource-empty-string-non-existing-version", "autoscaling").
+		WithVersions("version-non-existing").
 		WithResource("")
 	fmt.Printf("Query API Group:\n %#v\n", apiGroup)
 
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// Output:
-	// Query API Group:
-	//  &discovery.QueryGVR{name:"resource-empty-string", group:"autoscaling", resource:"", versions:[]string{"v1"}, unmatchedGVRs:[]string(nil)}
-	//  Result: &discovery.QueryResult{Found:true, NotFoundReason:""}
+	// 	Query API Group:
+	// 	&discovery.QueryGVR{name:"resource-empty-string-non-existing-version", group:"autoscaling", resource:"", versions:[]string{"version-non-existing"}, unmatchedGVRs:[]string(nil)}
+	//    Result: &discovery.QueryResult{Found:false, NotFoundReason:"GVRs=[autoscaling/version-non-existing, Resource=] status=unmatched presence=true"}
 }
