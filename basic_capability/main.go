@@ -34,4 +34,9 @@ func main() {
 	for k, v := range results {
 		fmt.Printf("group name: %s, result: %#v\n", k, v)
 	}
+
+	// Output:
+	// 	Query API Group:
+	//  &discovery.QueryGVR{name:"resource-doesn't-exist-empty-version-string", group:"autoscaling", resource:"resourcedoesntexist", versions:[]string{""}, unmatchedGVRs:[]string(nil)}
+	// group name: resource-doesn't-exist-empty-version-string, result: &discovery.QueryResult{Found:true, NotFoundReason:""}
 }
