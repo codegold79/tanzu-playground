@@ -28,7 +28,32 @@ cmd/plugin/<plugin>: Path where you plugins main directory will live
 
 cmd/plugin/<plugin>/test: Plugins are required to have a test command defined
 
-## Commands
+## Comands From [tanzu-framework documentation](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/plugin_implementation_guide.md#bootstrap-a-new-cli-plugin)
+
+Add plugin name to `PLUGINS` variable in the `Makefile.
+
+Build the plugin:
+
+```bash
+    make build-install-local
+```
+
+After that, can see the plugin with,
+
+```bash
+   $  tanzu plugin list
+   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY              VERSION      STATUS     
+    ... 
+   pluginplay          create a very simple plugin to test and play with.                 Standalone                         v0.0.1       installed  
+```
+
+Run the plugin with,
+
+```bash
+    tanzu pluginplay hi
+```
+
+## Commands From Original Readme (Not done)
 
 `make build`: builds your plugin artifacts
 `make lint`: run the golangci linter on your plugin code
