@@ -22,7 +22,7 @@ func main() {
 		log.Fatal(err)
 	}
 	p.AddCommands(
-		// Add commands
+		HelloWorldCmd,
 	)
 	if err := p.Execute(); err != nil {
 		os.Exit(1)
