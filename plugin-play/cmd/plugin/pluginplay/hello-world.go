@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/spf13/cobra"
 )
+
+const timerPeriod time.Duration = 5 * time.Second
 
 var HelloWorldCmd = &cobra.Command{
 	Use:   "hi",
@@ -19,30 +22,31 @@ var HelloWorldCmd = &cobra.Command{
 func helloWorld(cmd *cobra.Command, _ []string) error {
 	fmt.Println("Hello, World.")
 
-	ticker := time.NewTicker(2500 * time.Millisecond)
-	done := make(chan bool)
+	var i int
+	ctx := cmd.Context()
+	startTime := time.Now()
 
-	go func() {
-		var i int
-		for {
-			select {
-			case <-done:
-				return
-			case <-ticker.C:
-				if i%2 == 0 {
-					fmt.Println(i, "tick")
-				} else {
-					fmt.Println(i, "tock")
-				}
-				i++
+	for {
+		select {
+		case <-time.After(1 * time.Second):
+			tickTock(i)
+			i++
+
+			if time.Since(startTime) >= timerPeriod {
+				fmt.Println("Bye, World.")
+				return nil
 			}
+		case <-ctx.Done():
+			log.Println("early shutdown")
+			return nil
 		}
-	}()
+	}
+}
 
-	time.Sleep(1 * time.Minute)
-	ticker.Stop()
-	done <- true
-	fmt.Println("Tick-tock stopped")
-
-	return nil
+func tickTock(i int) {
+	if i%2 == 0 {
+		fmt.Println(i, "tick")
+	} else {
+		fmt.Println(i, "tock")
+	}
 }
