@@ -12,6 +12,7 @@ require (
 	github.com/golangci/golangci-lint v1.43.0
 	github.com/spf13/cobra v1.3.0
 	github.com/vmware-tanzu/tanzu-framework v1.4.0-pre-alpha-2.0.20220119234741-712b1ad45604
+	golang.org/x/net v0.0.0-20211005215030-d2e5035098b3
 )
 
 require (
@@ -242,7 +243,6 @@ require (
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
 	golang.org/x/mod v0.5.1 // indirect
-	golang.org/x/net v0.0.0-20211005215030-d2e5035098b3 // indirect
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/sys v0.0.0-20211205182925-97ca703d548d // indirect
