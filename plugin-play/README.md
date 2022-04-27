@@ -5,7 +5,7 @@ Welcome, lets get started with your new Tanzu plugin repository.
 Note: this README.md and the boostrapping for creating a plugin was made using,
 
 ```bash
-tanzu builder tanzu builder init plugin-basic
+tanzu builder init plugin-basic
 ```
 
 More instructions are in the [tanzu-framework documentation](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/cli/plugin_implementation_guide.md).
